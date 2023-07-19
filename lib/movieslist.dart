@@ -24,7 +24,7 @@ class _MoviesList extends State<MoviesList> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-          padding: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: 25),
           child: Consumer<MoviesModel>(
             builder: (context, value, child) {
               return Column(children: createListIHM(value.moviesDb));
