@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
+import 'package:flutter_application_cine/services/tmdb.dart';
+import 'package:provider/provider.dart';
+import 'package:tmdb_api/tmdb_api.dart';
 
 class SearchBarClass extends StatefulWidget {
   const SearchBarClass({super.key});
@@ -10,10 +16,14 @@ class SearchBarClass extends StatefulWidget {
 class _SearchBar extends State<SearchBarClass> {
   String text = '';
 
-  void cheng(String value) {
+  void onFilled(String value) async {
     setState(() {
       text = value;
     });
+    Map test = await TDMBCilent().getMoviesBySearch(value);
+    print(json.encode(test));
+    Provider.of<MoviesModel>(context, listen: false).movies =
+        test.values.elementAt(1);
   }
 
   @override
@@ -27,7 +37,7 @@ class _SearchBar extends State<SearchBarClass> {
                   padding: const EdgeInsets.only(top: 18.0),
                   child: SearchBar(
                       hintText: 'Entrez le titre du film recherché...',
-                      onChanged: cheng)),
+                      onChanged: onFilled)),
               Text(text,
                   style: const TextStyle(color: Colors.black, fontSize: 30))
             ]));

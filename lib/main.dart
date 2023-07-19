@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/movieslist.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:flutter_application_cine/searchbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,7 +81,11 @@ class MyApp extends StatelessWidget {
                   )
                 ],
               ),
-              body: ListView(children: const [SearchBarClass()]))
+              body: ChangeNotifierProvider(
+                  create: (BuildContext context) {
+                    return MoviesModel();
+                  },
+                  child: ListView(children: [SearchBarClass(), MoviesList()])))
         ]));
   }
 }
