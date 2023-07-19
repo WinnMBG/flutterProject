@@ -24,15 +24,15 @@ class MyApp extends StatelessWidget {
               // autoPlay: false,
             ),
             items: [
-              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
-              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
-              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
+              "images/cine1.jpg",
+              "images/cine2.jpg",
+              "images/cine3.jpg",
               // "https://newdawnfilm.com/wp-content/uploads/2020/06/shutterstock_169841813-min.png",
               // "https://www.cia-france.fr/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg",
             ]
                 .map((item) => Container(
                       child: Center(
-                        child: Image.network(
+                        child: Image.asset(
                           item,
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
