@@ -17,16 +17,16 @@ class MyApp extends StatelessWidget {
         home: Stack(children: <Widget>[
           CarouselSlider(
             options: CarouselOptions(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 1,
               autoPlay: true,
               viewportFraction: 1.0,
               enlargeCenterPage: false,
               // autoPlay: false,
             ),
             items: [
-              "https://th.bing.com/th/id/OIP.QvXq4TCacvs7Z5KNl9V_tQHaFP?w=259&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-              "https://th.bing.com/th/id/OIP.Zn8GD6ZZppjZG4B_57tiZAHaET?w=316&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-              "https://th.bing.com/th/id/OIP.iWfgfj9-3pHTgCw2C4nU3gHaEK?w=267&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+              "https://www.cfmradio.fr/_img/__upload/870x489_043-dpa-pa-220910-99-705957-dpaijpg@44f.jpg",
+              "https://newdawnfilm.com/wp-content/uploads/2020/06/shutterstock_169841813-min.png",
+              "https://www.cia-france.fr/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg",
             ]
                 .map((item) => Container(
                       child: Center(
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
                         height: 20,
                       ),
                     ),
-                    Text('MyAppCine')
+                    Text('CinéRat')
                   ],
                 ),
                 actions: <Widget>[
