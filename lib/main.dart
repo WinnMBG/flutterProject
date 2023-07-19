@@ -24,9 +24,11 @@ class MyApp extends StatelessWidget {
               // autoPlay: false,
             ),
             items: [
-              "https://www.cfmradio.fr/_img/__upload/870x489_043-dpa-pa-220910-99-705957-dpaijpg@44f.jpg",
-              "https://newdawnfilm.com/wp-content/uploads/2020/06/shutterstock_169841813-min.png",
-              "https://www.cia-france.fr/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg",
+              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
+              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
+              "https://github.com/WinnMBG/flutterProject/blob/main/images/OIP.jpg?raw=true",
+              // "https://newdawnfilm.com/wp-content/uploads/2020/06/shutterstock_169841813-min.png",
+              // "https://www.cia-france.fr/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg",
             ]
                 .map((item) => Container(
                       child: Center(
