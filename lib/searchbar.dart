@@ -38,8 +38,6 @@ class _SearchBar extends State<SearchBarClass> {
                   child: SearchBar(
                       hintText: 'Entrez le titre du film recherché...',
                       onChanged: onFilled)),
-              Text(text,
-                  style: const TextStyle(color: Colors.black, fontSize: 30))
             ]));
   }
 }

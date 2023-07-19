@@ -13,11 +13,20 @@ class MoviesList extends StatefulWidget {
 
 class _MoviesList extends State<MoviesList> {
   List<Widget> createListIHM(List<dynamic> datas) {
-    List<Widget> list = [];
-    for (int i = 0; i < datas.length; i++) {
-      list.add(Movie(datas[i]));
+    List<Widget> finalList = [];
+    List<Widget> listTmp = [];
+    late Widget rowTmp;
+    for (int i = 1; i <= datas.length; i++) {
+      if ((listTmp.length == 4) ||
+          ((i == datas.length) && (listTmp.isNotEmpty))) {
+        rowTmp = Padding(
+            padding: EdgeInsets.only(top: 30), child: Row(children: listTmp));
+        finalList.add(rowTmp);
+        listTmp = [];
+      }
+      listTmp.add(Movie(datas[i - 1]));
     }
-    return list;
+    return finalList;
   }
 
   @override
