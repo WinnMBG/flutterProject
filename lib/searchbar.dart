@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:flutter_application_cine/services/requests.dart';
 import 'package:provider/provider.dart';
-import 'package:tmdb_api/tmdb_api.dart';
 
 class SearchBarClass extends StatefulWidget {
   const SearchBarClass({super.key});

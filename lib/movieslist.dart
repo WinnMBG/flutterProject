@@ -20,7 +20,8 @@ class _MoviesList extends State<MoviesList> {
       if ((listTmp.length == 4) ||
           ((i == datas.length) && (listTmp.isNotEmpty))) {
         rowTmp = Padding(
-            padding: EdgeInsets.only(top: 30), child: Row(children: listTmp));
+            padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+            child: Row(children: listTmp));
         finalList.add(rowTmp);
         listTmp = [];
       }

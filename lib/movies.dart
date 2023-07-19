@@ -16,15 +16,19 @@ class Movie extends StatelessWidget {
             width: 350,
           )
         : Image.asset("images/poster.jpg", height: 350, width: 350);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        img,
-        Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(data['original_title'],
-                style: TextStyle(color: Colors.white)))
-      ],
+    return SizedBox(
+      width: 350,
+      height: 400,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          img,
+          Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(data['original_title'],
+                  style: TextStyle(color: Colors.white)))
+        ],
+      ),
     );
   }
 
