@@ -20,8 +20,10 @@ class MovieDetails extends StatefulWidget {
 
 class _MovieDetails extends State<MovieDetails> {
   late Future<Map> res;
+  late Map videos;
 
   Future<Map> getMovieDetails(String id) async {
+    videos = await TDMBCilent().getVideosByMovieId(int.parse(id));
     return TDMBCilent().getMovieById(int.parse(id));
   }
 
@@ -79,7 +81,7 @@ class _MovieDetails extends State<MovieDetails> {
               },
               child: ListView(children: [
                 MovieTitle(snapshot.data?['original_title']),
-                Affiche(snapshot.data?['poster_path']),
+                Affiche(snapshot.data?['poster_path'], videos),
                 FavIcon(),
                 Synopsis(snapshot.data?['overview'])
               ]),

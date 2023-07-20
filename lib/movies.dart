@@ -55,12 +55,19 @@ class _Movie extends State<Movie> {
                 child: Text(data['original_title'],
                     style: TextStyle(color: Colors.white, fontSize: 15))),
           ),
-          IconButton(
-              onPressed: addToFavorite,
-              icon: Icon(
-                Icons.favorite,
-                color: isFavorite ? Colors.red : Colors.white,
-              ))
+          Consumer<MoviesModel>(
+            builder: (context, value, child) {
+              return IconButton(
+                  onPressed: () => value.addMovieToFavorites = [
+                        ...value.favoriteMoviesDb,
+                        widget.data
+                      ],
+                  icon: Icon(
+                    Icons.favorite,
+                    color: isFavorite ? Colors.red : Colors.white,
+                  ));
+            },
+          ),
         ])
       ],
     );
