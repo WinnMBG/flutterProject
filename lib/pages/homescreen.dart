@@ -45,10 +45,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 6),
-                  child: Image.network(
-                    "https://th.bing.com/th/id/OIP.19eOcs_L9HWel9NYlfZZrwHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-                    width: 20,
-                    height: 20,
+                  child: InkWell(
+                    child: Image.network(
+                      "https://th.bing.com/th/id/OIP.19eOcs_L9HWel9NYlfZZrwHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                      width: 20,
+                      height: 20,
+                    ),
+                    onTap: () => context.go('/'),
                   ),
                 ),
                 Text('CinéRat')
@@ -61,21 +64,15 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.redAccent,
                 ),
                 onPressed: () => context.go('/favorites'),
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.home_filled,
-                  color: Colors.white,
-                ),
-                onPressed: () => context.go('/'),
               )
             ],
           ),
-          body: ChangeNotifierProvider(
+          body: ChangeNotifierProvider<MoviesModel>(
               create: (BuildContext context) {
                 return MoviesModel();
               },
-              child: ListView(children: [SearchBarClass(), MoviesList()])))
+              child: Column(
+                  children: [SearchBarClass(), Expanded(child: MoviesList())])))
     ]);
   }
 }
