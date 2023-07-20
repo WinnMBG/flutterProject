@@ -39,20 +39,19 @@ class _Movie extends State<Movie> {
             height: 250,
             width: screenWidth * 1,
           )
-      
         : Image.asset("images/poster.jpg", height: 250, width: screenWidth * 1);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () => context.go('/favorites'),
+          onTap: () => context.go('/movie/${data['id']}'),
           child: img,
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 150),
             child: TextButton(
-                onPressed: () => context.go('/favorites'),
+                onPressed: () => context.go('/movie/${data['id']}'),
                 child: Text(data['original_title'],
                     style: TextStyle(color: Colors.white, fontSize: 15))),
           ),
@@ -64,7 +63,6 @@ class _Movie extends State<Movie> {
               ))
         ])
       ],
-
     );
   }
 

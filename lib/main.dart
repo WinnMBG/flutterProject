@@ -9,10 +9,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-
 void main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 final _router = GoRouter(
@@ -27,8 +26,10 @@ final _router = GoRouter(
       builder: (context, state) => Favorites(),
     ),
     GoRoute(
-        path: '/boubou',
-        builder: (context, state) => MovieDetails()),
+        path: '/movie/:id',
+        name: 'movie',
+        builder: (context, state) =>
+            MovieDetails(id: state.pathParameters['id'])),
   ],
 );
 
