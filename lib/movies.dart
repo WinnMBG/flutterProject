@@ -29,6 +29,7 @@ class _Movie extends State<Movie> {
   }
 
   Widget createMovieCard(dynamic data, BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     String imgUrl = data['poster_path'] != null
         ? "https://image.tmdb.org/t/p/w500${data['poster_path']}"
         : "";
@@ -36,9 +37,9 @@ class _Movie extends State<Movie> {
         ? Image.network(
             imgUrl,
             height: 250,
-            width: 250,
+            width: screenWidth * 1,
           )
-        : Image.asset("images/poster.jpg", height: 250, width: 250);
+        : Image.asset("images/poster.jpg", height: 250, width: screenWidth * 1);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

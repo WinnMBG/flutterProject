@@ -14,4 +14,12 @@ class TDMBCilent {
   Future<Map> getMoviesBySearch(String search) async {
     return tmdbWithCustomLogs.v3.search.queryMovies(search);
   }
+
+  Future<Map> getMovieById(int id) async {
+    return tmdbWithCustomLogs.v3.movies.getDetails(id);
+  }
+
+  Future<Map> getVideosByMovieId(int id) async {
+    return tmdbWithCustomLogs.v3.movies.getVideos(id);
+  }
 }

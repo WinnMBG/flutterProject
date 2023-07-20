@@ -13,14 +13,22 @@ class MoviesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 600;
     return Consumer<MoviesModel>(
       builder: (context, value, child) {
         return Padding(
           padding: const EdgeInsets.only(top: 30.0),
           child: GridView.count(
-              crossAxisCount: isLargeScreen ? 4 : 1,
-              childAspectRatio: isLargeScreen ? 1 : 0.4,
+              crossAxisCount: MediaQuery.of(context).size.width < 600
+                  ? 1
+                  : (MediaQuery.of(context).size.width >= 600 &&
+                          MediaQuery.of(context).size.width < 870
+                      ? 2
+                      : (MediaQuery.of(context).size.width >= 870 &&
+                              MediaQuery.of(context).size.width < 1200
+                          ? 3
+                          : 4)),
+              childAspectRatio:
+                  MediaQuery.of(context).size.width > 600 ? 1 : 0.4,
               mainAxisSpacing: 1.0,
               crossAxisSpacing: 0.0,
               children: createListIHM(value.movies)),
