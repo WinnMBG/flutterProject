@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:flutter/material.dart';
 

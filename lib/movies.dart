@@ -26,7 +26,11 @@ class Movie extends StatelessWidget {
           Padding(
               padding: EdgeInsets.only(top: 10),
               child: Text(data['original_title'],
-                  style: TextStyle(color: Colors.white)))
+                  style: TextStyle(color: Colors.black))),
+          Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: Text('Sortie le : ${data['release_date']}',
+                  style: TextStyle(color: Colors.black))),
         ],
       ),
     );
