@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
+import 'package:flutter_application_cine/pages/favorites.dart';
 import 'package:flutter_application_cine/movieDetails.dart';
+
 import 'package:flutter_application_cine/pages/homescreen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -17,18 +23,9 @@ final _router = GoRouter(
       builder: (context, state) => HomeScreen(),
     ),
     GoRoute(
-        path: '/favorites',
-        builder: (context, state) => Column(children: [
-              Text('je suis la page des favoris'),
-              TextButton(
-                onPressed: () => context.go('/'),
-                child: Text('Go back home'),
-              ),
-              TextButton(
-                onPressed: () => context.go('/boubou'),
-                child: Text('Boubou?'),
-              )
-            ])),
+      path: '/favorites',
+      builder: (context, state) => Favorites(),
+    ),
     GoRoute(
         path: '/boubou',
         builder: (context, state) => MovieDetails()),
@@ -36,14 +33,15 @@ final _router = GoRouter(
 );
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      title: 'CineDuRat',
-      debugShowCheckedModeBanner: false,
-      // theme: ThemeData(scaffoldBackgroundColor: Colors.deepPurple),
+    return ChangeNotifierProvider(
+      create: (context) => MoviesModel(),
+      child: MaterialApp.router(
+        routerConfig: _router,
+        title: 'CineDuRat',
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

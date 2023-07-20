@@ -39,6 +39,7 @@ class _Movie extends State<Movie> {
             height: 250,
             width: screenWidth * 1,
           )
+      
         : Image.asset("images/poster.jpg", height: 250, width: screenWidth * 1);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,6 +64,7 @@ class _Movie extends State<Movie> {
               ))
         ])
       ],
+
     );
   }
 
