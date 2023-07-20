@@ -71,11 +71,12 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          body: ChangeNotifierProvider(
+          body: ChangeNotifierProvider<MoviesModel>(
               create: (BuildContext context) {
                 return MoviesModel();
               },
-              child: ListView(children: [SearchBarClass(), MoviesList()])))
+              child: Column(
+                  children: [SearchBarClass(), Expanded(child: MoviesList())])))
     ]);
   }
 }

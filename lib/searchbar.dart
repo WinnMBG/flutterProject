@@ -16,11 +16,12 @@ class _SearchBar extends State<SearchBarClass> {
   String text = '';
 
   void onFilled(String value) async {
+    print(value);
     setState(() {
       text = value;
     });
     Map test = await TDMBCilent().getMoviesBySearch(value);
-    print(json.encode(test));
+    // print(json.encode(test));
     Provider.of<MoviesModel>(context, listen: false).movies =
         test.values.elementAt(1);
   }

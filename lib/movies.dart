@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:go_router/go_router.dart';
 
-class Movie extends StatelessWidget {
+import 'package:provider/provider.dart';
+
+class Movie extends StatefulWidget {
   dynamic data;
 
   Movie(this.data, {super.key});
+  @override
+  State<StatefulWidget> createState() => _Movie();
+}
+
+class _Movie extends State<Movie> {
+//  dynamic data;
+  bool isFavorite = false;
+
+  //_Movie(this.data);
+
+  void addToFavorite() {
+    Provider.of<MoviesModel>(context, listen: false)
+        .favoriteMoviesDb
+        .add(widget.data);
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+    print(Provider.of<MoviesModel>(context, listen: false).favoriteMoviesDb);
+  }
 
   Widget createMovieCard(dynamic data, BuildContext context) {
     String imgUrl = data['poster_path'] != null
@@ -13,31 +35,38 @@ class Movie extends StatelessWidget {
     Widget img = imgUrl.isNotEmpty
         ? Image.network(
             imgUrl,
-            height: 350,
-            width: 350,
+            height: 250,
+            width: 250,
           )
-        : Image.asset("images/poster.jpg", height: 350, width: 350);
-    return SizedBox(
-      width: 350,
-      height: 450,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () => context.go('/favorites'),
-            child: img,
+        : Image.asset("images/poster.jpg", height: 250, width: 250);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InkWell(
+          onTap: () => context.go('/favorites'),
+          child: img,
+        ),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 150),
+            child: TextButton(
+                onPressed: () => context.go('/favorites'),
+                child: Text(data['original_title'],
+                    style: TextStyle(color: Colors.white, fontSize: 15))),
           ),
-          Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(data['original_title'],
-                  style: TextStyle(color: Colors.white)))
-        ],
-      ),
+          IconButton(
+              onPressed: addToFavorite,
+              icon: Icon(
+                Icons.favorite,
+                color: isFavorite ? Colors.red : Colors.white,
+              ))
+        ])
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return createMovieCard(data, context);
+    return createMovieCard(widget.data, context);
   }
 }
