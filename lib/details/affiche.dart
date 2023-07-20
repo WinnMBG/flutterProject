@@ -13,8 +13,6 @@ class Affiche extends StatelessWidget {
       child: Image.asset(
         'images/tenet.jpg',
         width: min(screenWidth * 1 , 900),
-    
-        
       ),
     );
   }
