@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:flutter_application_cine/pages/favorites.dart';
+import 'package:flutter_application_cine/movieDetails.dart';
+
 import 'package:flutter_application_cine/pages/homescreen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
+
+void main() async {
+  await dotenv.load(fileName: '.env');
+  runApp(const MyApp());
 }
 
 final _router = GoRouter(
@@ -22,17 +28,7 @@ final _router = GoRouter(
     ),
     GoRoute(
         path: '/boubou',
-        builder: (context, state) => Column(children: [
-              Text('je suis Boubou'),
-              TextButton(
-                onPressed: () => context.go('/'),
-                child: Text('Go back home'),
-              ),
-              TextButton(
-                onPressed: () => context.go('/favorites'),
-                child: Text('Go to favorites ?'),
-              )
-            ])),
+        builder: (context, state) => MovieDetails()),
   ],
 );
 

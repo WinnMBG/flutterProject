@@ -4,42 +4,36 @@ import 'package:provider/provider.dart';
 
 import 'movies.dart';
 
-class MoviesList extends StatefulWidget {
+class MoviesList extends StatelessWidget {
   MoviesList({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _MoviesList();
-}
-
-class _MoviesList extends State<MoviesList> {
   List<Widget> createListIHM(List<dynamic> datas) {
-    List<Widget> finalList = [];
-    List<Widget> listTmp = [];
-    late Widget rowTmp;
-    for (int i = 1; i <= datas.length; i++) {
-      if ((listTmp.length == 4) ||
-          ((i == datas.length) && (listTmp.isNotEmpty))) {
-        rowTmp = Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
-            child: Row(children: listTmp));
-        finalList.add(rowTmp);
-        listTmp = [];
-      }
-      listTmp.add(Movie(datas[i - 1]));
-    }
-    return finalList;
+    return datas.map((e) => Movie(e)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-          padding: EdgeInsets.only(top: 25),
-          child: Consumer<MoviesModel>(
-            builder: (context, value, child) {
-              return Column(children: createListIHM(value.moviesDb));
-            },
-          )),
+    return Consumer<MoviesModel>(
+      builder: (context, value, child) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: GridView.count(
+              crossAxisCount: MediaQuery.of(context).size.width < 600
+                  ? 1
+                  : (MediaQuery.of(context).size.width >= 600 &&
+                          MediaQuery.of(context).size.width < 870
+                      ? 2
+                      : (MediaQuery.of(context).size.width >= 870 &&
+                              MediaQuery.of(context).size.width < 1200
+                          ? 3
+                          : 4)),
+              childAspectRatio:
+                  MediaQuery.of(context).size.width > 600 ? 1 : 0.4,
+              mainAxisSpacing: 1.0,
+              crossAxisSpacing: 0.0,
+              children: createListIHM(value.movies)),
+        );
+      },
     );
   }
 }
