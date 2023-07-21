@@ -4,14 +4,6 @@ class MoviesModel extends ChangeNotifier {
   List<dynamic> moviesDb = [];
   List<dynamic> favoriteMoviesDb = [];
 
-  // MoviesModel() {
-  //   _initFavoriteMoviesDb();
-  // }
-
-  void _initFavoriteMoviesDb() {
-    favoriteMoviesDb = [];
-  }
-
   set movies(List<dynamic> value) {
     moviesDb = value;
     notifyListeners();
@@ -20,7 +12,8 @@ class MoviesModel extends ChangeNotifier {
   List<dynamic> get movies => moviesDb;
   List<dynamic> get favoriteMovies => favoriteMoviesDb;
 
-  set addMovieToFavorites(List<dynamic> movie) {
+  set favoriteMovies(List<dynamic> movies) {
+    print(movies);
     favoriteMoviesDb = movies;
     notifyListeners();
   }

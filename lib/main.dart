@@ -36,7 +36,7 @@ final _router = GoRouter(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider<MoviesModel>(
       create: (context) => MoviesModel(),
       child: MaterialApp.router(
         routerConfig: _router,
