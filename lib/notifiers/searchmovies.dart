@@ -13,13 +13,17 @@ class MoviesModel extends ChangeNotifier {
   List<dynamic> get favoriteMovies => favoriteMoviesDb;
 
   set favoriteMovies(List<dynamic> movies) {
-    print(movies);
     favoriteMoviesDb = movies;
     notifyListeners();
   }
 
   void removeMovieFromFavorites(dynamic movie) {
+    print("remove 1");
+    print(favoriteMoviesDb);
+    print(movie);
     favoriteMoviesDb.remove(movie);
+    print(favoriteMoviesDb);
+    print('remove 2');
     notifyListeners();
   }
 }
