@@ -9,10 +9,13 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Favorites extends StatelessWidget {
+  const Favorites({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
       Scaffold(
+      backgroundColor: const Color.fromARGB(0, 15, 4, 4),
           appBar: AppBar(
             backgroundColor: Colors.black54,
             title: Row(
@@ -25,7 +28,7 @@ class Favorites extends StatelessWidget {
                     height: 20,
                   ),
                 ),
-                Text('CinéRat')
+                const Text('CinéRat')
               ],
             ),
             actions: <Widget>[
@@ -52,8 +55,8 @@ class Favorites extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
                       child: Text(
                         'Mes Favoris',
                         style: TextStyle(
@@ -65,7 +68,6 @@ class Favorites extends StatelessWidget {
                     Consumer<MoviesModel>(
                       builder: (context, value, child) {
                         List<dynamic> favoriteMovies = value.favoriteMovies;
-                        //print(favoriteMovies);
 
                         return GridView.builder(
                           shrinkWrap: true,

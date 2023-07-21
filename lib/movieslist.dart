@@ -27,8 +27,6 @@ class MoviesList extends StatelessWidget {
                               MediaQuery.of(context).size.width < 1200
                           ? 3
                           : 4)),
-              // childAspectRatio:
-              //     MediaQuery.of(context).size.width > 600 ? 1 : 0.4,
               mainAxisSpacing: 1.0,
               crossAxisSpacing: 0.0,
               children: createListIHM(value.movies)),

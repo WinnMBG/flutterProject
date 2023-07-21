@@ -16,14 +16,11 @@ class HomeScreen extends StatelessWidget {
           autoPlay: true,
           viewportFraction: 1.0,
           enlargeCenterPage: false,
-          // autoPlay: false,
         ),
         items: [
           "images/cine1.jpg",
           "images/cine2.jpg",
           "images/cine3.jpg",
-          // "https://newdawnfilm.com/wp-content/uploads/2020/06/shutterstock_169841813-min.png",
-          // "https://www.cia-france.fr/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg",
         ]
             .map((item) => Container(
                   child: Center(

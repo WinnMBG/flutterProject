@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'details/fav_icon.dart';
 
 class MovieDetails extends StatefulWidget {
-  // late dynamic data;
   String? id;
 
   MovieDetails({super.key, this.id});
@@ -31,7 +30,6 @@ class _MovieDetails extends State<MovieDetails> {
   @override
   void initState() {
     super.initState();
-    //print('Data ${widget.id!}');
     res = getMovieDetails(widget.id!);
   }
 
@@ -75,7 +73,6 @@ class _MovieDetails extends State<MovieDetails> {
         future: res,
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
           if (snapshot.hasData) {
-            //print('test is ${snapshot.data.toString()}');
             return ListView(
               children: [
                 MovieTitle(snapshot.data?['original_title'],

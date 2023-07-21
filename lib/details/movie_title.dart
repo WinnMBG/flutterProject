@@ -9,9 +9,8 @@ class MovieTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //print(title);
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -19,14 +18,14 @@ class MovieTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(title != null ? title! : 'Tenet',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                       color: Colors.grey,
                     )),
                 Text(
                   'Sortie : $releaseDate',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
                   ),

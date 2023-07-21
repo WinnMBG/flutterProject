@@ -16,7 +16,6 @@ class _SearchBar extends State<SearchBarClass> {
   String text = '';
 
   void onFilled(String value) async {
-    // print(value);
     setState(() {
       text = value;
     });

@@ -14,11 +14,7 @@ class Movie extends StatefulWidget {
 }
 
 class _Movie extends State<Movie> {
-//  dynamic data;
   bool isFavorite = false;
-
-  //_Movie(this.data);
-
   void addToFavorite() {
     Provider.of<MoviesModel>(context, listen: false)
         .favoriteMoviesDb
@@ -26,7 +22,6 @@ class _Movie extends State<Movie> {
     setState(() {
       isFavorite = !isFavorite;
     });
-    //print(Provider.of<MoviesModel>(context, listen: false).favoriteMoviesDb);
   }
 
   Widget createMovieCard(dynamic data, BuildContext context) {
@@ -57,7 +52,6 @@ class _Movie extends State<Movie> {
                     style: TextStyle(color: Colors.grey, fontSize: 15))),
           ),
           Consumer<MoviesModel>(builder: (context, value, child) {
-            //print("data is : " + data.toString());
             return FavIcon(data);
           }),
         ])
