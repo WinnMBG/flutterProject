@@ -89,7 +89,6 @@ class Favorites extends StatelessWidget {
                                         (movie) => Column(
                                           children: [
                                             Movie(movie),
-                                            SizedBox(height: 5),
                                             FavIcon(),
                                           ],
                                         ),

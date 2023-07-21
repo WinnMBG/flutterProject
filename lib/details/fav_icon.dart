@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 
 class FavIcon extends StatelessWidget {
-  const FavIcon({super.key});
+  final dynamic movieData;
+
+  const FavIcon({this.movieData, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-      child: Icon(
-                Icons.favorite,
-                color: Colors.red,
-                size: 50,
-              ),
+    final moviesModel = Provider.of<MoviesModel>(context);
+    final isFavorite = moviesModel.favoriteMovies
+        .contains(movieData); // Vérifier si le film est un favori
+
+    return IconButton(
+      onPressed: () {
+        // Inverser l'état du film entre favori et non favori
+        if (isFavorite) {
+          moviesModel.removeMovieFromFavorites(movieData);
+        } else {
+          moviesModel.favoriteMovies = [
+            ...moviesModel.favoriteMovies,
+            movieData,
+          ];
+        }
+      },
+      icon: Icon(
+        Icons.favorite,
+        color: isFavorite ? Colors.red : Colors.white,
+      ),
     );
   }
 }

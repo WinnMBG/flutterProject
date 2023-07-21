@@ -60,8 +60,9 @@ class _Movie extends State<Movie> {
               return IconButton(
                   onPressed: () => value.favoriteMovies = [
                         ...value.favoriteMoviesDb,
-                        widget.data
-                      ],
+                        widget.data,
+                      ]
+                      ,
                   icon: Icon(
                     Icons.favorite,
                     color: isFavorite ? Colors.red : Colors.white,
