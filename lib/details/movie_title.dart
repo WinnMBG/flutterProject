@@ -9,7 +9,7 @@ class MovieTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(title);
+    //print(title);
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Row(

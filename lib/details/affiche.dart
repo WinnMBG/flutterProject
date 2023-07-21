@@ -11,7 +11,7 @@ class Affiche extends StatelessWidget {
 
   String? getYoutubeKey(Map? videos) {
     String key = '';
-    print('resluts ${videos!['results']}');
+    //print('results ${videos!['results']}');
     for (dynamic i in videos!['results']) {
       if ((i!['type'] as String).contains('Trailer')) {
         key = i!['key'];
@@ -22,7 +22,7 @@ class Affiche extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(videos.toString());
+    //print(videos.toString());
     String? key = getYoutubeKey(videos);
     double screenWidth = MediaQuery.of(context).size.width;
     return Align(

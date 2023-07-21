@@ -18,12 +18,12 @@ class MoviesModel extends ChangeNotifier {
   }
 
   void removeMovieFromFavorites(dynamic movie) {
-    print("remove 1");
-    print(favoriteMoviesDb);
-    print(movie);
+    //print("remove 1");
+    //print(favoriteMoviesDb);
+    //print(movie);
     favoriteMoviesDb.remove(movie);
-    print(favoriteMoviesDb);
-    print('remove 2');
+    //print(favoriteMoviesDb);
+    //print('remove 2');
     notifyListeners();
   }
 }

@@ -16,14 +16,14 @@ class FavIcon extends StatelessWidget {
     // print("Favorite : " + isFavorite.toString());
 
     return Consumer<MoviesModel>(builder: (context, value, child) {
+      print("the movie to studied is : " + movie.toString());
+      print("the list to studied is : " + value.favoriteMovies.toString());
       return IconButton(
         onPressed: () {
-          print(movie);
-
           // Inverser l'état du film entre favori et non favori
           if (value.favoriteMovies.contains(movie)) {
             value.removeMovieFromFavorites(movie);
-            print("pressed");
+            print("remove");
           } else {
             print("add");
             value.favoriteMovies = [
@@ -34,8 +34,10 @@ class FavIcon extends StatelessWidget {
         },
         icon: Icon(
           Icons.favorite,
-          color:
-              value.favoriteMovies.contains(movie) ? Colors.red : Colors.grey,
+          color: value.favoriteMovies
+                  .any((favoriteMovie) => favoriteMovie['id'] == movie['id'])
+              ? Colors.red
+              : Colors.blue,
         ),
       );
     });

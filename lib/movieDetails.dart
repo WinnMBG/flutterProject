@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_cine/details/affiche.dart';
 import 'package:flutter_application_cine/details/movie_title.dart';
 import 'package:flutter_application_cine/details/synopsys.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:flutter_application_cine/services/requests.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _MovieDetails extends State<MovieDetails> {
   @override
   void initState() {
     super.initState();
-    print('Data ${widget.id!}');
+    //print('Data ${widget.id!}');
     res = getMovieDetails(widget.id!);
   }
 
@@ -74,18 +75,15 @@ class _MovieDetails extends State<MovieDetails> {
         future: res,
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
           if (snapshot.hasData) {
-            // print('test ${snapshot.data.toString()}');
-            return ChangeNotifierProvider(
-              create: (BuildContext context) {
-                return;
-              },
-              child: ListView(children: [
+            //print('test is ${snapshot.data.toString()}');
+            return ListView(
+              children: [
                 MovieTitle(snapshot.data?['original_title'],
                     snapshot.data?['release_date']),
                 Affiche(snapshot.data?['poster_path'], videos),
                 FavIcon(snapshot.data),
-                Synopsis(snapshot.data?['overview'])
-              ]),
+                Synopsis(snapshot.data?['overview']),
+              ],
             );
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());

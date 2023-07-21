@@ -67,7 +67,7 @@ class Favorites extends StatelessWidget {
                       Consumer<MoviesModel>(
                         builder: (context, value, child) {
                           List<dynamic> favoriteMovies = value.favoriteMovies;
-                          print(favoriteMovies);
+                          //print(favoriteMovies);
                           final int rows = (favoriteMovies.length / 4).ceil();
 
                           return Column(
@@ -89,7 +89,6 @@ class Favorites extends StatelessWidget {
                                         (movie) => Column(
                                           children: [
                                             Movie(movie),
-                                            FavIcon(movie),
                                           ],
                                         ),
                                       )

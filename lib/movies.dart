@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/details/fav_icon.dart';
 import 'package:flutter_application_cine/notifiers/searchmovies.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,7 +26,7 @@ class _Movie extends State<Movie> {
     setState(() {
       isFavorite = !isFavorite;
     });
-    print(Provider.of<MoviesModel>(context, listen: false).favoriteMoviesDb);
+    //print(Provider.of<MoviesModel>(context, listen: false).favoriteMoviesDb);
   }
 
   Widget createMovieCard(dynamic data, BuildContext context) {
@@ -53,21 +54,12 @@ class _Movie extends State<Movie> {
             child: TextButton(
                 onPressed: () => context.go('/movie/${data['id']}'),
                 child: Text(data['original_title'],
-                    style: TextStyle(color: Colors.white, fontSize: 15))),
+                    style: TextStyle(color: Colors.grey, fontSize: 15))),
           ),
-          Consumer<MoviesModel>(
-            builder: (context, value, child) {
-              return IconButton(
-                  onPressed: () => value.favoriteMovies = [
-                        ...value.favoriteMoviesDb,
-                        widget.data,
-                      ],
-                  icon: Icon(
-                    Icons.favorite,
-                    color: isFavorite ? Colors.red : Colors.white,
-                  ));
-            },
-          ),
+          Consumer<MoviesModel>(builder: (context, value, child) {
+            //print("data is : " + data.toString());
+            return FavIcon(data);
+          }),
         ])
       ],
     );
