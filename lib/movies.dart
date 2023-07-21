@@ -58,7 +58,7 @@ class _Movie extends State<Movie> {
           Consumer<MoviesModel>(
             builder: (context, value, child) {
               return IconButton(
-                  onPressed: () => value.addMovieToFavorites = [
+                  onPressed: () => value.favoriteMovies = [
                         ...value.favoriteMoviesDb,
                         widget.data
                       ],

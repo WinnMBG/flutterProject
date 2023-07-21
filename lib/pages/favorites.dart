@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/details/fav_icon.dart';
 import 'package:flutter_application_cine/movies.dart';
 
 import 'package:flutter_application_cine/notifiers/searchmovies.dart';
@@ -66,6 +67,7 @@ class Favorites extends StatelessWidget {
                       Consumer<MoviesModel>(
                         builder: (context, value, child) {
                           List<dynamic> favoriteMovies = value.favoriteMovies;
+                          print(favoriteMovies);
                           final int rows = (favoriteMovies.length / 4).ceil();
 
                           return Column(
@@ -84,8 +86,12 @@ class Favorites extends StatelessWidget {
                                 child: Row(
                                   children: rowMovies
                                       .map(
-                                        (movie) => Expanded(
-                                          child: Movie(movie),
+                                        (movie) => Column(
+                                          children: [
+                                            Movie(movie),
+                                            SizedBox(height: 5),
+                                            FavIcon(),
+                                          ],
                                         ),
                                       )
                                       .toList(),

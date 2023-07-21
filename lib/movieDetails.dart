@@ -75,18 +75,13 @@ class _MovieDetails extends State<MovieDetails> {
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
           if (snapshot.hasData) {
             // print('test ${snapshot.data.toString()}');
-            return ChangeNotifierProvider(
-              create: (BuildContext context) {
-                return;
-              },
-              child: ListView(children: [
-                MovieTitle(snapshot.data?['original_title'],
-                    snapshot.data?['release_date']),
-                Affiche(snapshot.data?['poster_path'], videos),
-                FavIcon(),
-                Synopsis(snapshot.data?['overview'])
-              ]),
-            );
+            return ListView(children: [
+              MovieTitle(snapshot.data?['original_title'],
+                  snapshot.data?['release_date']),
+              Affiche(snapshot.data?['poster_path'], videos),
+              FavIcon(),
+              Synopsis(snapshot.data?['overview'])
+            ]);
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
