@@ -26,4 +26,11 @@ class MoviesModel extends ChangeNotifier {
     //print('remove 2');
     notifyListeners();
   }
+
+  void removeMovieFromFavoritesWithId(dynamic movie) {
+    favoriteMovies
+        .removeWhere((favoriteMovie) => favoriteMovie['id'] == movie['id']);
+
+    notifyListeners();
+  }
 }
