@@ -11,9 +11,8 @@ import 'package:provider/provider.dart';
 class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Scaffold(
+    return Stack(children: <Widget>[
+      Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
             title: Row(
@@ -46,67 +45,66 @@ class Favorites extends StatelessWidget {
               )
             ],
           ),
-          body: ListView(
-            children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Text(
-                          'Mes Favoris',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+          body: ListView(children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        'Mes Favoris',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Consumer<MoviesModel>(
-                        builder: (context, value, child) {
-                          List<dynamic> favoriteMovies = value.favoriteMovies;
-                          //print(favoriteMovies);
-                          final int rows = (favoriteMovies.length / 4).ceil();
+                    ),
+                    Consumer<MoviesModel>(
+                      builder: (context, value, child) {
+                        List<dynamic> favoriteMovies = value.favoriteMovies;
+                        //print(favoriteMovies);
 
-                          return Column(
-                            children: List.generate(rows, (rowIndex) {
-                              final int startIndex = rowIndex * 4;
-                              final int endIndex =
-                                  (rowIndex + 1) * 4 < favoriteMovies.length
-                                      ? (rowIndex + 1) * 4
-                                      : favoriteMovies.length;
-                              final List<dynamic> rowMovies =
-                                  favoriteMovies.sublist(startIndex, endIndex);
-
-                              return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 3),
-                                child: Row(
-                                  children: rowMovies
-                                      .map(
-                                        (movie) => Column(
-                                          children: [
-                                            Movie(movie),
-                                          ],
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                              );
-                            }),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: MediaQuery.of(context).size.width <
+                                    600
+                                ? 2
+                                : (MediaQuery.of(context).size.width >= 600 &&
+                                        MediaQuery.of(context).size.width < 870
+                                    ? 3
+                                    : (MediaQuery.of(context).size.width >=
+                                                870 &&
+                                            MediaQuery.of(context).size.width <
+                                                1200
+                                        ? 4
+                                        :6)),
+                            childAspectRatio: 0.7,
+                            crossAxisSpacing: 2.0,
+                            mainAxisSpacing: 2.0,
+                          ),
+                          itemCount: favoriteMovies.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            dynamic movie = favoriteMovies[index];
+                            return Column(
+                              children: [
+                                Movie(movie),
+                                SizedBox(height: 5),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        )
-      ],
-    );
+            ),
+          ]))
+    ]);
   }
 }
