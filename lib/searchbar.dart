@@ -21,7 +21,7 @@ class _SearchBar extends State<SearchBarClass> {
       text = value;
     });
     Map test = await TDMBCilent().getMoviesBySearch(value);
-    // print(json.encode(test));
+    print(json.encode(test));
     Provider.of<MoviesModel>(context, listen: false).movies =
         test.values.elementAt(1);
   }

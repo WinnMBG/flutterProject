@@ -1,30 +1,41 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_cine/movieslist.dart';
+import 'package:flutter_application_cine/notifiers/searchmovies.dart';
+import 'package:flutter_application_cine/pages/homescreen.dart';
+import 'package:flutter_application_cine/searchbar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_application_cine/main.dart';
+import 'package:integration_test/integration_test.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('Test HomeScreen Widget', (WidgetTester tester) async {
+    await dotenv.load(fileName: '.env');
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(MaterialApp(
+      home: ChangeNotifierProvider<MoviesModel>(
+          create: (context) => MoviesModel(),
+          child:
+              HomeScreen()), // Replace this with your actual MaterialApp setup
+    ));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the CarouselSlider is displayed.
+    expect(find.byType(CarouselSlider), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that the AppBar is displayed.
+    expect(find.byType(AppBar), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the SearchBarClass is displayed.
+    expect(find.byType(SearchBarClass), findsOneWidget);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(SearchBar), 'hi');
+    await Future.delayed(const Duration(seconds: 5));
+
+    // await tester.tap(find.byType(InkWell));
+    // Verify that the MoviesList is displayed.
+    expect(find.byType(MoviesList), findsOneWidget);
   });
 }
