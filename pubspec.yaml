@@ -70,7 +70,7 @@ flutter:
     - images/
     - .env
     - assets/fonts/
-    - packages/youtube_player_flutter/assets/speedometer.webp
+    # - packages/youtube_player_flutter/assets/speedometer.webp
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class MovieTitle extends StatelessWidget {
   String? title;
+  String? releaseDate;
 
-  MovieTitle(this.title, {super.key});
+  MovieTitle(this.title, this.releaseDate, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +22,13 @@ class MovieTitle extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
-                      color: Colors.black,
+                      color: Colors.grey,
                     )),
                 Text(
-                  'Sortie : 24 JUILLET 2024',
+                  'Sortie : $releaseDate',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.black,
+                    color: Colors.grey,
                   ),
                 ),
               ],

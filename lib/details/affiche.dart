@@ -6,9 +6,18 @@ import 'package:flutter_application_cine/youtubeplayer.dart';
 class Affiche extends StatelessWidget {
   String? posterPath;
   Map? videos;
-  final String urlVideo = 'https://www.youtube.com/watch?v=6ZfuNTqbHE8';
 
   Affiche(this.posterPath, this.videos, {Key? key}) : super(key: key);
+
+  String? getYoutubeKey(Map? videos) {
+    String key = '';
+    for (dynamic i in videos!['results']) {
+      if ((i!['type'] as String).contains('Trailer')) {
+        key = i!['key'];
+      }
+    }
+    return key;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +26,7 @@ class Affiche extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: posterPath != null
-          ? YoutubePlayerEx()
+          ? YoutubePlayerEx(getYoutubeKey(videos))
           // Image.network("https://image.tmdb.org/t/p/w500${posterPath}",
           //     width: min(screenWidth * 1, 900))
           : Image.asset(
