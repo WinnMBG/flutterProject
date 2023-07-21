@@ -80,7 +80,8 @@ class _MovieDetails extends State<MovieDetails> {
                 return;
               },
               child: ListView(children: [
-                MovieTitle(snapshot.data?['original_title']),
+                MovieTitle(snapshot.data?['original_title'],
+                    snapshot.data?['release_date']),
                 Affiche(snapshot.data?['poster_path'], videos),
                 FavIcon(),
                 Synopsis(snapshot.data?['overview'])
